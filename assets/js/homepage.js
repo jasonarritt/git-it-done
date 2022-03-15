@@ -15,6 +15,9 @@ function getUserRepos(user) {
             alert("Error: GitHub User Not Found");
         }
     })
+    .catch(function (error) {
+        alert("Unable to Connect to GitHub");
+    })
 }
 
 function formSubmitHandler(event) {
@@ -34,6 +37,11 @@ function formSubmitHandler(event) {
 function displayRepos(repos, searchTerm) {
     repoContainerEl.textContent = '';
     repoSearchTerm.textContent = searchTerm;
+
+    if (repos.length === 0) {
+        repoContainerEl.textContent = "No Repositories Found.";
+        return;
+    }
 
     //Loop over repos
     for ( i = 0; i < repos.length; i++) {
